@@ -12,30 +12,47 @@ const Navbar = () => {
     useStateContext();
   return (
     <div className="navbar-container">
-        <Link href="/">
-          <div className="main-store-logo">
+      <Link href="/">
+        <div className="main-store-logo">
           <Image
-          className="main-store-logo-image"
+            className="main-store-logo-image"
             src={vercel}
             width={90}
             height={90}
           />
-          </div>
-        </Link>
-      <button className="cart-icon" onClick={handleDarkMode} style={{color: isDarkMode? "white" : "black", display:'flex', alignItems:'center'}}>
-        <TiLightbulb color={isDarkMode ? "gray" : "black"} />
-        {/* {isDarkMode ? "Light mode" : "Dark mode"} */}
-      </button>
+        </div>
+      </Link>
       {!showCart && (
-        <button
-          type="button"
-          className="cart-icon"
-          style={{color: isDarkMode? "white":"black"}}
-          onClick={() => setShowCart(true)}
+        <div
+          className="cart-icon-container"
+          style={{
+            display: "flex",
+            flexDirection:'row',
+            alignItems:'center'
+          }}
         >
-          <AiOutlineShopping />
-          <span className="cart-item-qty">{totalQuantities}</span>
-        </button>
+          <button
+            className="lightBulb"
+            onClick={handleDarkMode}
+            style={{
+              color: isDarkMode ? "gold" : "black",
+              display: "flex",
+              alignItems: "center",
+              marginRight: "20px",
+            }}
+          >
+            <TiLightbulb color={isDarkMode ? "gold" : "black"} />
+          </button>
+          <button
+            type="button"
+            className="cart-icon"
+            style={{ color: isDarkMode ? "white" : "black" }}
+            onClick={() => setShowCart(true)}
+          >
+            <AiOutlineShopping />
+            <span className="cart-item-qty">{totalQuantities}</span>
+          </button>
+        </div>
       )}
       {showCart && <Cart />}
     </div>
